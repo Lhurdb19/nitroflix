@@ -1,0 +1,118 @@
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
+  font-family: Montserratlight;
+}
+
+@font-face {
+  font-family: Montserratlight;
+  src: url(/src/Assets/Montserrat-Light.ttf);
+}
+
+.form-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding-top:40px ;
+}
+
+.form-container > form {
+  width: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 20px;
+  gap: 15px;
+  background-color: rgba(145, 142, 142, 0.2);
+}
+
+.form-container > form > input {
+  width: 300px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.form-container > form > span {
+  display: flex;
+  position: relative;
+}
+.form-container > form > span > input {
+  width: 300px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid black;
+  padding: 10px;
+}
+.form-container > form > span > .wrap {
+  display: flex;
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  cursor: pointer;
+}
+
+.form-container > form > button {
+  width: 100px;
+  height: 40px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: pink;
+  color: white;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.form-container > form > p {
+  cursor: pointer;
+}
+
+.user {
+  height: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user > .user-icon {
+    color: black;
+    cursor: pointer;
+  }
+  
+  .user > .user-card {
+    width: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: rgba(32, 32, 32, 0.4);
+    gap: 10px;
+    top: 72px;
+    font-size: 11px;
+    padding: 10px;
+    position: fixed;
+    z-index: 101;
+    color: white;
+  }
+  
+  .user-card > h4 {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }

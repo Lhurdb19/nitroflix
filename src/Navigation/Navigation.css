@@ -1,0 +1,38 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+.navigation-container {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 99;
+    gap: 40px;
+    background-color: rgba(42, 35, 35, 0.7);
+    padding: 10px 100px;
+}
+
+.navigation-container > .nav-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.navigation-container > .nav-link > li > a {
+    color: #ffb606;
+
+}
+
+
+
+.toggle-menu {
+    display: none;
+}
