@@ -1,0 +1,105 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+.trendingview-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding:90px 70px;
+    gap: 20px;
+    background-color: #121212;
+}
+
+.trendingview-container > h1 {
+    color: #fff;
+}
+
+.trendingview-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.trendingview-link {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.trendingview-box {
+    width: 100%;
+    height: 270px;
+    display: flex;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.trendingview-box > img {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+}
+
+.trendingview-box:hover {
+    transform: scale(1.05);
+}
+
+.trendingview-overlay {
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    opacity: 0;
+  }
+
+  .trendingview-box:hover .trendingview-overlay {
+    opacity: 1;
+  }
+
+  .trendingview-overlay > h2 {
+    font-size: 16px;
+    font-family: Strike;
+  }
+  .trendingview-overlay > p {
+    font-size: 14px;
+    font-family: MontLight;
+}
+
+.trendingview-wrapper > p {
+    font-size: 14px;
+    font-family: MontLight;
+}
+
+.trendingview-container > a {
+    margin-left: 70px;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-family: Strike;
+}
+
+.trendingview-container > a:hover {
+    background-color: #fff;
+    color: black;
+}

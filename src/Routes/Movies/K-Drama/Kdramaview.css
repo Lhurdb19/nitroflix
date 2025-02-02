@@ -1,0 +1,125 @@
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+.kdramaview-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding:90px 70px;
+    gap: 20px;
+    background-color: #121212;
+}
+
+.kdramaview-container > h1 {
+    color: #fff;
+}
+
+.kdramaview-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.kdramaview-link {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.kdramaview-box {
+    width: 100%;
+    height: 270px;
+    display: flex;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.kdramaview-box > img {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+}
+
+.kdramaview-box:hover {
+    transform: scale(1.05);
+}
+
+.kdramaview-overlay {
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    opacity: 0;
+  }
+
+  .kdramaview-box:hover .kdramaview-overlay {
+    opacity: 1;
+  }
+
+  .kdramaview-overlay > h2 {
+    font-size: 16px;
+    font-family: Strike;
+  }
+  .kdramaview-overlay > p {
+    font-size: 14px;
+    font-family: MontLight;
+}
+
+.kdramaview-wrapper > p {
+    font-size: 14px;
+    font-family: MontLight;
+}
+
+.kdramaview-container > a {
+    margin-left: 70px;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-family: Strike;
+}
+
+.kdramaview-container > a:hover {
+    background-color: #fff;
+    color: black;
+}
+
+.skeleton-box {
+    width: 100%;
+    height: 270px;
+    background-color: #f20505;
+    border-radius: 10px;
+    animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+    0% {
+        background-color: #444;
+    }
+    50% {
+        background-color: #555;
+    }
+    100% {
+        background-color: #444;
+    }
+}

@@ -1,41 +1,45 @@
-import { BrowserRouter as Router } from "react-router-dom";
-// import { Route, Routes } from "react-router-dom";
-import { Element } from "react-scroll";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Navigation from "./Navigation/navigation";
-// import Login from "./Auth/login";
-// import Signup from "./Auth/signup";
 import Home from "./Routes/Home/home";
 import About from "./Routes/About/about";
-import Portfolio from "./Routes/Portfolio/portfolio";
-import Blog from "./Routes/Blog/blog";
-import Contact from "./Routes/Contact/contact";
-import Faq from "./Routes/Faq/faq";
-import Pricing from "./Routes/Pricing/pricing";
-import Service from "./Routes/Service/service";
-import Team from "./Routes/Team/team";
-import Testimonial from "./Routes/Testimonials/testimonial";
-import Footer from "./Routes/Footer/footer"
+import Trending from "./Routes/Movieslider/Trending/trending";
+import Trendingview from "./Routes/Movies/Trending/trendingview";
+import Toprated from "./Routes/Movieslider/Toprated/toprated";
+import Moviedetail from "./Routes/Details/movies";
+import Popularmovie from "./Routes/Movieslider/Popular/popularmovie";
+import Popularview from "./Routes/Movies/Popular/popularview";
+import Kdramamovie from "./Routes/Movieslider/K-Drama/kdrama";
+import Kdramaview from "./Routes/Movies/K-Drama/kdramaview";
+import Upcomingmovie from "./Routes/Movieslider/Unrelease/upcomingmovie";
+import Upcomingview from "./Routes/Movies/Unrelease/upcomingview";
+import Footer from "./Routes/Footer/footer";
 
+// Create a new QueryClient instance
+const queryClient = new QueryClient();
 
 function App() {
-
   return (
+    <QueryClientProvider client={queryClient}>
       <Router>
-      <Navigation/>
-      <Element name="home"><Home/></Element>
-      <Element name="about"><About/></Element>
-      <Element name="contact"><Contact/></Element>
-      <Element name="pricing"><Pricing/></Element>
-      <Element name="blog"><Blog/></Element>
-      <Element name="faq"><Faq/></Element>
-      <Element name="portfolio"><Portfolio/></Element>
-      <Element name="service"><Service/></Element>
-      <Element name="team"><Team/></Element>
-      <Element name="testimonial"><Testimonial/></Element>
-      {/* <Element name="login"><Login/></Element> */}
-      {/* <Element name="signup"><Signup/></Element> */}
-      <Footer/>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/trending" element={<Trending />} />
+          <Route path="/trendingview" element={<Trendingview/>}/>
+          <Route path="/toprated" element={<Toprated/>}/>
+          <Route path="/popularmovie" element={<Popularmovie/>}/>
+          <Route path="/popularview" element={<Popularview/>}/>
+          <Route path="/kdrama" element={<Kdramamovie/>}/>
+          <Route path="/kdramaview" element={<Kdramaview/>}/>
+          <Route path="/upcomingmovie" element={<Upcomingmovie/>}/>
+          <Route path="/upcomingview" element={<Upcomingview/>}/>
+          <Route path="/Trend/:id" element={<Moviedetail />} />
+        </Routes>
+        <Footer />
       </Router>
+    </QueryClientProvider>
   );
 }
 

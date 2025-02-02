@@ -10,6 +10,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { CiPower } from "react-icons/ci";
 import './Navigation.css';
 
+const API_KEY = '4288ff89da779dcd1ba86834cf9c48d9';
 
 function Navigation() {
     const { Signout, isLoggedIn } = useContext(AuthContext);
@@ -17,63 +18,72 @@ function Navigation() {
     const navigate = useNavigate();
     const [scrolling, setScrolling] = useState(false);
     const [userDrop, setUserDrop] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
 
     useEffect(()=> {
         const handleScroll = ()=> {
-            if(window.scrollY > 600) {
-                setScrolling(true);
-            } else {
-                setScrolling(false);
-            };
+            setScrolling(window.scrollY > 600);
         };
         window.addEventListener("scroll", handleScroll);
-        return ()=> {
-            window.removeEventListener("scroll", handleScroll)
-        };
+        return ()=> window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const handleUser = ()=> {
-        setUserDrop(!userDrop);
-    }
-
+    const handleUser = ()=> setUserDrop(!userDrop);
     const handleLogout = ()=> {
         Signout();
-        navigate('/')
-    }
-    
-  return (
-    <div className={`navigation-container ${scrolling ? 'scrolled' : ""}`}>
-        <Link to={'/home'} style={{color: scrolling ? "#fff" : '#ffb606'}} smooth={true} offset={-70} duration={500} spy={true} onClick={()=> setIsMobile(false)} >NITROFLIX</Link>
-        <div className={`nav-link ${isMobile ? 'mobile active' : ''}`} onClick={()=> setIsMobile(false)}>
+        navigate('/');
+    };
+
+    const handleSearch = async (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+        
+        if (query.length > 2) {
+            try {
+                const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`);
+                if (!response.ok) throw new Error("Failed to fetch");
+                const data = await response.json();
+                setSearchResults(data.results ? data.results.slice(0, 5) : []);
+            } catch (error) {
+                console.error("Error fetching movie data:", error);
+                setSearchResults([]);
+            }
+        } else {
+            setSearchResults([]);
+        }
+    };
+
+    return (
+        <div className={`navigation-container ${scrolling ? 'scrolled' : ""}`}>
+            <Link to={'/'} style={{color: scrolling ? "#fff" : '#ffb606'}} onClick={()=> setIsMobile(false)}>NITROFLIX</Link>
             
-            <li>
-            <Link to='/about' style={{color: scrolling ? "#fff" : '#ffb606'}} smooth={true} offset={-70} duration={500} spy={true} onClick={()=> setIsMobile(false)}> K-Drama </Link>
-            </li>
+            <div className="search-bar">
+                <input 
+                    type="text" 
+                    placeholder="Search movies..." 
+                    value={searchQuery} 
+                    onChange={handleSearch} 
+                />
+                {searchResults.length > 0 && (
+                    <ul className="search-results">
+                        {searchResults.map(movie => (
+                            <li key={movie.id} onClick={() => navigate(`/Trend/${movie.id}`)}>
+                                {movie.title} ({movie.release_date?.split("-")[0] || "N/A"})
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+
+            <div className={`nav-link ${isMobile ? 'mobile active' : ''}`} onClick={()=> setIsMobile(false)}>
+                <li><Link to='/blog' style={{color: scrolling ? "#fff" : '#ffb606'}} onClick={()=> setIsMobile(false)}> Blog </Link></li>
+                <li><Link to='/contact' style={{color: scrolling ? "#fff" : '#ffb606'}} onClick={()=> setIsMobile(false)}> Contact </Link></li>
+            </div>
             
-            <li>
-            <Link to='/portfolio' style={{color: scrolling ? "#fff" : '#ffb606'}} smooth={true} offset={-70} duration={500} spy={true} onClick={()=> setIsMobile(false)}> Recent Movies </Link>
-            </li>
-            
-            <li>
-            <Link to='/service' style={{color: scrolling ? "#fff" : '#ffb606'}} smooth={true} offset={-70} duration={500} spy={true} onClick={()=> setIsMobile(false)}> Action Movies </Link>
-            </li>
-            
-            <li>
-            <Link to='/testimonial' style={{color: scrolling ? "#fff" : '#ffb606'}} smooth={true} offset={-70} duration={500} spy={true} onClick={()=> setIsMobile(false)}> Bollywood </Link>
-            </li>
-            
-            <li>
-            <Link to='/blog' style={{color: scrolling ? "#fff" : '#ffb606'}} smooth={true} offset={-70} duration={500} spy={true} onClick={()=> setIsMobile(false)}> Blogs </Link>
-            </li>
-            
-            <li>
-            <Link to='/contact' style={{color: scrolling ? "#fff" : '#ffb606'}} smooth={true} offset={-70} duration={500} spy={true} onClick={()=> setIsMobile(false)}> Contact </Link>
-            </li>
+            <div className="toggle-menu" onClick={()=> setIsMobile(!isMobile)}>{isMobile ? <HiMiniXMark /> : <CgMenu />}</div>
         </div>
-            
-      <div className="toggle-menu" onClick={()=> setIsMobile(!isMobile)}>{isMobile ? <HiMiniXMark /> : <CgMenu />}</div>
-    </div>
-  )
+    );
 }
 
 export default Navigation;
