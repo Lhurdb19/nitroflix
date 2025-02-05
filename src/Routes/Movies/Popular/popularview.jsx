@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Popularview.css';
-import { get } from 'react-scroll/modules/mixins/scroller';
 
 const API_KEY = "4288ff89da779dcd1ba86834cf9c48d9"
 

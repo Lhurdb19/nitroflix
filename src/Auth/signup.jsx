@@ -1,12 +1,13 @@
-import React, { createContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
-import axios from 'axios';
 import LoadSpinner from '../Spinner/LoadSpinner';
+import { AuthContext } from '../ContextApi/AuthContext';
 
 const defaultForm = {
-    fullName: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
     password: ''
@@ -16,39 +17,35 @@ function Signup() {
 
     const [form, setForm] = useState(defaultForm);
     const [isVisible, setIsVisible] = useState(false);
-    const {fullName, email, phone, password} = form;
+    const { Register } = useContext(AuthContext)
+    const {firstName, lastName, email, phone, password} = form;
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate()
 
 
-    const handleSubmit = async (e)=> {
-        e.preventDefault();
-        setIsLoading(true);
-        try {
-          const response = await axios.post('https://getform.io/f/aqooqwpa', form,{
-            headers: 
-            {
-              'Content-type' : 'application/json',
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      setIsLoading(true);
+  
+      try {
+          const success = Register(email, password);
+          if (success) {
+              setForm(defaultForm);
+              navigate("/login");
           }
-        });
-        if (response.status !== 200) {
-          throw new Error('Request failed')
-        }
-        console.log(form);
-        setIsLoading(false);
-        setForm(defaultForm);
-        navigate("/")
+      } catch (error) {
+          console.error("Signup Error:", error);
+      } finally {
+          setIsLoading(false); // Ensures it runs only once
+      }
+  };
 
-        } catch (error) {
-          console.log(error.message);
-          setIsLoading(false)
-        }
-    };
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prevForm) => ({ ...prevForm, [name]: value }));
+};
 
-    const handleChange = (e)=> {
-        const {name, value} = e.target;
-        setForm({...form, [name] : value})
-    };
     
     const handleVisibility =()=> {
         setIsVisible(!isVisible);
@@ -59,7 +56,8 @@ function Signup() {
     <div className='form-container'>
         <h3>SignUp Form</h3>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder='Enter Your Full Nmae' name='fullName' value={fullName} onChange={handleChange} required />
+        <input type="text" placeholder='Enter Your Full Name' name='firstName' value={firstName} onChange={handleChange} required />
+        <input type="text" placeholder='Enter Your Full Nmae' name='lastName' value={lastName} onChange={handleChange} required />
         <input type="text" placeholder='Enter Your Email Address' name='email' value={email} onChange={handleChange} required />
         <input type="text" placeholder='Enter Your Phone Number' name='phone' value={phone} onChange={handleChange} required />
         <span>
@@ -68,7 +66,7 @@ function Signup() {
             {isVisible ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
         </div>
         </span>
-        <p onClick={()=> navigate('login')}>Don't have an accout yet? Login</p>
+        <p onClick={()=> navigate('/login')}>Already have an account? <Link to={'/login'} style={{ color: "red" }}>Login</Link></p>
         <button disabled={isLoading}>
           {isLoading ? <LoadSpinner/> : "SUBMIT"}
         </button>

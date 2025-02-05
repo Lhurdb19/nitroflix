@@ -29,6 +29,21 @@
     color: #fff;
     font-family: Strike;
 }
+@media screen and (max-width:896px) {
+    .popularview-container {
+        width: 100%;
+        flex-direction: column;
+        padding:150px 10px;
+        gap: 10px;
+        background-color: #121212;
+    }
+    
+    .popularview-container > h1 {
+        color: #fff;
+        font-family: Strike;
+        font-size: 14px;
+    }
+}
 
 .popularview-wrapper {
     width: 100%;
@@ -66,7 +81,41 @@
 .popularview-box:hover {
     transform: scale(1.05);
 }
-
+@media screen and (max-width:896px) {
+    .popularview-wrapper {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .popularview-link {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    
+    .popularview-box {
+        width: 100%;
+        height: 160px;
+        display: flex;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        flex-direction: column;
+    }
+    
+    .popularview-box > img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        display: block;
+        border-radius: 10px;
+    }
+}
 .popularview-overlay {
     position: absolute;
     bottom: 0%;
@@ -91,9 +140,29 @@
     font-size: 17px;
     font-family: Strike;
 }
-.popularview-overlay >  {
+.popularview-overlay > p {
     font-size: 12px;
     font-family: MontLight;
+}
+@media screen and (max-width:896px) {
+    .popularview-overlay {
+        position: relative;
+        background-color:transparent;
+        padding: 10px;
+        opacity: 0;
+        gap: 5px;
+        opacity: 1;
+    }
+    
+    .popularview-overlay > h2 {
+        font-size: 9px;
+        font-family: Strike;
+    }
+    .popularview-overlay > p {
+        display: none;
+        font-size: 12px;
+        font-family: MontLight;
+    }
 }
 
 .skeleton-box {

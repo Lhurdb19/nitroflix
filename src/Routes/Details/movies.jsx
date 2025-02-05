@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import './Movies.css';
 
 const API_KEY = '4288ff89da779dcd1ba86834cf9c48d9';
 
@@ -39,9 +40,9 @@ const MovieDetail = () => {
             <h3>Duration: {formatDuration(movie.runtime)}</h3>  {/* Duration format */}
             <p>Release Date: {movie.release_date}</p>
             <h3>Genres: {movie.genres.map((genre) => genre.name).join(', ')}</h3>
-            <p>Overview: {movie.overview}</p>
+            <p className="overview">Overview: {movie.overview}</p>
             <p>Popularity: {movie.popularity}</p>
-            <button>+ Play List</button>
+            <a href="https://www.youtube.com/watch?v=BLjvq2mlxBw">Play Now</a>
           </span>
         </div>
       ) : (

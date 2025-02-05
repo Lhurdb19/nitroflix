@@ -33,15 +33,15 @@ function Kdramaview() {
                 {loading
                     ? Array.from({ length: 5 }).map((_, index) => (
                         <div key={index} className="kdramaview-box">
-                            <Skeleton height={270} width="100%" borderRadius={10} />
-                            <Skeleton height={20} width="80%" style={{ marginTop: 10 }} />
-                            <Skeleton height={15} width="60%" />
+                            <Skeleton height={270} width="100%" borderRadius={10} style={{background: 'red'}} />
+                            <Skeleton height={20} width="80%" style={{ marginTop: 10, background: 'red'}} />
+                            <Skeleton height={15} width="60%" style={{background: 'red'}} />
                         </div>
                     ))
                     : kdramaViews.map((movie) => (
                         <Link to={`/Trend/${movie.id}`} key={movie.id} className='kdramaview-link'>
                             <div className="kdramaview-box">
-                                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.title} Poster`} />
+                                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.name} Poster`} />
                                 <div className="kdramaview-overlay">
                                     <h2>{movie.name}</h2>
                                     <p>Release: {movie.first_air_date}</p>

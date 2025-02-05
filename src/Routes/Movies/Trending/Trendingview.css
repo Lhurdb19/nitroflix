@@ -17,6 +17,18 @@
 
 .trendingview-container > h1 {
     color: #fff;
+    font-family: Strike;
+}
+@media screen and (max-width:896px) {
+    .trendingview-container {
+        width: 100%;
+        padding:150px 10px;
+        gap: 10px;
+    }
+    
+    .trendingview-container > h1 {
+        font-size: 14px;
+    }
 }
 
 .trendingview-wrapper {
@@ -55,6 +67,39 @@
 .trendingview-box:hover {
     transform: scale(1.05);
 }
+@media screen and (max-width:896px) {
+    .trendingview-wrapper {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    
+    .trendingview-link {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    
+    .trendingview-box {
+        width: 100%;
+        height: 160px;
+        display: flex;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        flex-direction: column;
+    }
+    
+    .trendingview-box > img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        display: block;
+        border-radius: 10px;
+    }
+}
 
 .trendingview-overlay {
     position: absolute;
@@ -84,22 +129,24 @@
     font-size: 14px;
     font-family: MontLight;
 }
-
-.trendingview-wrapper > p {
-    font-size: 14px;
-    font-family: MontLight;
-}
-
-.trendingview-container > a {
-    margin-left: 70px;
-    color: #fff;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    padding: 10px 15px;
-    font-family: Strike;
-}
-
-.trendingview-container > a:hover {
-    background-color: #fff;
-    color: black;
+@media screen and (max-width:896px) {
+    .trendingview-overlay {
+        position: relative;
+        bottom: 0%;
+        left: 0%;
+        width: 100%;
+        background-color: transparent;
+        color: #fff;
+        opacity: 1;
+      }
+    
+      .trendingview-overlay > h2 {
+        font-size: 9px;
+        font-family: Strike;
+      }
+      .trendingview-overlay > p {
+        display: none;
+        font-size: 14px;
+        font-family: MontLight;
+    }
 }

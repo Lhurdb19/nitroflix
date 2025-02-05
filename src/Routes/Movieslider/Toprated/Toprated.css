@@ -16,7 +16,7 @@
 
 .top-component {
     text-align: start;
-    padding: 50px 20px;
+    padding: 20px 20px;
     background-color: #121212;
     color: #fff;
   }
@@ -24,6 +24,19 @@
   .top-component > h1 {
     padding-left: 70px;
     font-family: Strike;
+  }
+  @media screen and (max-width:896px) {
+    .top-component {
+      text-align: start;
+      padding: 20px 10px;
+      color: #fff;
+      gap: -5px;
+    }
+  
+    .top-component > h1 {
+      padding-left: 10px;
+      font-size: 14px;
+    }
   }
   
   .top-wrapper {
@@ -58,6 +71,31 @@
   .top-box:hover {
     transform: scale(1.05);
   }
+  @media screen and (max-width:896px) {
+    .top-wrapper {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0px 0px;
+    }
+    
+    .slick-slide {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 10px; /* Space between images */
+    }
+    
+    .top-box {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+    
+    .top-box img {
+      width: 100%;
+      height: auto;
+    }
+  }
   
   .top-overlay {
     position: absolute;
@@ -78,6 +116,13 @@
   .top-box:hover .top-overlay {
     opacity: 1;
   }
+  @media screen and (max-width:896px) {
+    .top-overlay {
+      opacity: 1;
+      position: relative;
+      background-color: transparent;
+    }
+  }
 
   .top-overlay > h2 {
     font-size: 16px;
@@ -87,10 +132,16 @@
     font-size: 14px;
     font-family: MontLight;
 }
-
-.top-wrapper > p {
+@media screen and (max-width:896px) {
+  .top-overlay > h2 {
+    font-size: 8px;
+    font-family: Strike;
+  }
+  .top-overlay > p {
+    display: none;
     font-size: 14px;
     font-family: MontLight;
+}
 }
 
 .top-component > a {
@@ -105,4 +156,11 @@
 .top-component > a:hover {
     background-color: #fff;
     color: black;
+}
+@media screen and (max-width:896px) {
+  .top-component > a {
+    margin-left: 10px;
+    padding: 7px 10px;
+    font-size: 10px;
+}
 }

@@ -36,7 +36,7 @@ function Popularmovie() {
 
   return (
     <div className="popular-container">
-      <div className="slider-wrapper">
+      <div className="popular-wrapper">
         <Slider {...settings} className="fade-slider">
           {popularMovies.map((movie) => (
             <Link

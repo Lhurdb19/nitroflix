@@ -49,7 +49,8 @@ const Trendingmovie = () => {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          arrows: false,
+          slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
@@ -80,8 +81,8 @@ const Trendingmovie = () => {
             ))}
           </Slider>
         </div>
-        
       <Link to={'/trendingview'}>See More</Link>
+        
       </div>
     </Fragment>
   );

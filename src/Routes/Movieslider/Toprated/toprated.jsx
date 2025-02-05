@@ -42,14 +42,15 @@ const Toprated = () => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
           slidesToScroll: 2,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          arrows: false,
+          slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
@@ -80,8 +81,8 @@ const Toprated = () => {
             ))}
           </Slider>
         </div>
+      <Link to={'/topratedview'}>See More</Link>
         
-      {/* <Link to={'/topratedview'}>See More</Link> */}
       </div>
     </Fragment>
   );

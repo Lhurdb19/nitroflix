@@ -16,7 +16,7 @@
 
 .trending-component {
     text-align: start;
-    padding: 50px 20px;
+    padding: 10px 20px;
     background-color: #121212;
     color: #fff;
   }
@@ -24,6 +24,19 @@
   .trending-component > h1 {
     padding-left: 70px;
     font-family: Strike;
+  }
+  @media screen and (max-width:896px) {
+    .trending-component {
+      text-align: start;
+      padding: 20px 10px;
+      color: #fff;
+      gap: 10px;
+    }
+  
+    .trending-component > h1 {
+      font-size: 15px;
+      padding-left: 10px;
+    }
   }
   
   .slider-wrap {
@@ -58,6 +71,32 @@
   .trending-box:hover {
     transform: scale(1.05);
   }
+
+  @media screen and (max-width:896px) {
+    .slider-wrap {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    
+    .slick-slide {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 10px; /* Space between images */
+    }
+    
+    .trending-box {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+    
+    .trending-box img {
+      width: 100%;
+      height: auto;
+    }
+  }
   
   .trending-overlay {
     position: absolute;
@@ -79,6 +118,15 @@
     opacity: 1;
   }
 
+  @media screen and (max-width:896px) {
+    .trending-overlay {
+      opacity: 1;
+      gap: 0px;
+      position: relative;
+      background-color: transparent;
+    }
+  }
+
   .trending-overlay > h2 {
     font-size: 16px;
     font-family: Strike;
@@ -88,9 +136,17 @@
     font-family: MontLight;
 }
 
-.trending-wrapper > p {
-    font-size: 14px;
+@media screen and (max-width:896px) {
+  .trending-overlay > h2 {
+    font-size: 8px;
+    font-family: Strike;
+  }
+  .trending-overlay > p {
+    display: none;
+    font-size: 10px;
     font-family: MontLight;
+}
+
 }
 
 .trending-component > a {
@@ -105,4 +161,14 @@
 .trending-component > a:hover {
     background-color: #fff;
     color: black;
+}
+@media screen and (max-width:896px) {
+  .trending-component > a {
+    margin-left: 10px;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 7px 10px;
+    font-size: 10px;
+}
 }

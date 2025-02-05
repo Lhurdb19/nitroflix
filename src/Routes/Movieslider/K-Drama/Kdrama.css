@@ -16,7 +16,7 @@
 
 .kdrama-container {
     width: 100%;
-    padding: 50px 20px;
+    padding: 10px;
     background-color: #121212;
     color: #fff;
 }
@@ -24,6 +24,19 @@
 .kdrama-container > h1 {
     padding-left: 70px;
     font-family: Strike;
+}
+
+@media screen and (max-width:896px) {
+    .kdrama-container {
+        width: 100%;
+        padding: 20px 10px;
+        color: #fff;
+    }
+    
+    .kdrama-container > h1 {
+        padding-left: 10px;
+        font-size: 14px;
+    }
 }
 
 .kdrama-wrapper {
@@ -56,6 +69,30 @@
 .kdrama-box:hover {
     transform: scale(1.04);
 }
+@media screen and (max-width:896px) {
+    .kdrama-wrapper {
+        max-width: 100%;
+        margin: 0% auto;
+        padding: 20px 0;
+    }
+    
+    .kdrama-slider {
+        width: 100%;
+        display: flex;
+    }
+    
+    .kdrama-box {
+        width: 100%;
+        height: auto;
+    }
+    
+    .kdrama-box > img {
+        width: 100%;
+        height: 130px;
+        display: block;
+        border-radius: 10px;
+    }
+}
 
 .kdrama-overlay {
     position: absolute;
@@ -75,6 +112,13 @@
 
   .kdrama-box:hover .kdrama-overlay {
     opacity: 1;
+  }
+  @media screen and (max-width:896px) {
+     .kdrama-overlay {
+        opacity: 1;
+        background-color: transparent;
+        position: relative;
+     }
   }
 
   .kdrama-overlay > h2 {
@@ -103,4 +147,27 @@
 .kdrama-container > a:hover {
     background-color: #fff;
     color: #121212;
+}
+@media screen and (max-width:896px) {
+    .kdrama-overlay > h2 {
+        font-size: 9px;
+      }
+      .kdrama-overlay > p {
+        display: none;
+        font-size: 14px;
+        font-family: MontLight;
+    }
+    
+    .kdrama-wrapper > p {
+        font-size: 10px;
+        font-family: MontLight;
+    }
+    
+    .kdrama-container > a {
+        margin-left: 10px;
+        border-radius: 10px;
+        padding: 7px 10px;
+        font-family: Strike;
+        font-size: 10px;
+    }
 }

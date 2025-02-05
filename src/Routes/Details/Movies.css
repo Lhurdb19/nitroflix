@@ -1,0 +1,78 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Strike;
+    src: url(/src/Assets/Bebas_Neue\,Montserrat\,Protest_Strike.zip);
+}
+
+@font-face {
+    font-family: MontLight;
+    src: url(/src/Assets/Montserrat-Light.ttf);
+}
+
+
+.detail-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 70px;
+    gap: 40px;
+    background-color: #121212;
+}
+
+.detail-container > img {
+    width: 40%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.detail-container > span {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px 70px;
+    gap: 10px;
+    color: #fff;
+}
+
+.detail-container > span > h1 {
+    font-size: 30px;
+    font-family: Strike;
+}
+.detail-container > span > h3 {
+    font-size: 16px;
+    font-family: MontLight;
+}
+.detail-container > span > p {
+    font-size: 17px;
+    font-family: MontLight;
+}
+.detail-container > span > .overview {
+    font-size: 16px;
+    font-family: MontLight;
+    line-height: 1.5rem;
+}
+.detail-container > span > a {
+    font-size: 15px;
+    font-family: MontLight;
+    color: #fff;
+    border: 1px solid white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.detail-container > span > a:hover {
+    background-color: #fff;
+    color: #121212;
+}

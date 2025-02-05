@@ -16,7 +16,7 @@
 
 .upcoming-container {
     text-align: start;
-    padding: 50px 20px;
+    padding: 20px 20px;
     background-color: #121212;
     color: #fff;
   }
@@ -24,6 +24,20 @@
   .upcoming-container > h1 {
     padding-left: 70px;
     font-family: Strike;
+  }
+  @media screen and (max-width:896px) {
+    .upcoming-container {
+      text-align: start;
+      padding: 20px 10px;
+      background-color: #121212;
+      color: #fff;
+    }
+  
+    .upcoming-container > h1 {
+      padding-left: 10px;
+      font-family: Strike;
+      font-size: 14px;
+    }
   }
   
   .upcoming-wrapper {
@@ -52,6 +66,24 @@
   .upcoming-box:hover {
     transform: scale(1.05);
   }
+  @media screen and (max-width:896px) {
+    .upcoming-wrapper {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 10px 0;
+    }
+    
+    
+    .upcoming-box {
+      position: relative;
+      width: 100%;
+    }
+    
+    .upcoming-box img {
+      width: 100%;
+      height: auto;
+    }
+  }
   
   .upcoming-overlay {
     position: absolute;
@@ -71,6 +103,13 @@
 
   .upcoming-box:hover .upcoming-overlay {
     opacity: 1;
+  }
+  @media screen and (max-width:896px) {
+     .upcoming-overlay {
+      opacity: 1;
+      position: relative;
+      background-color: transparent;
+     }
   }
 
   .upcoming-overlay > h2 {
@@ -99,4 +138,29 @@
 .upcoming-container > a:hover {
     background-color: #fff;
     color: black;
+}
+@media screen and (max-width:896px) {
+  .upcoming-overlay > h2 {
+    font-size: 9px;
+    font-family: Strike;
+  }
+  .upcoming-overlay > p {
+    display: none;
+    font-size: 14px;
+    font-family: MontLight;
+}
+
+.upcoming-wrapper > p {
+    font-size: 10px;
+    font-family: MontLight;
+}
+
+.upcoming-container > a {
+    margin-left: 10px;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 7px 10px;
+    font-size: 10px;
+}
 }

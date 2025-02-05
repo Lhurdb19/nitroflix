@@ -18,6 +18,23 @@
 .kdramaview-container > h1 {
     color: #fff;
 }
+@media screen and (max-width:896px) {
+    .kdramaview-container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        padding:150px 10px;
+        gap: 10px;
+        background-color: #121212;
+    }
+    
+    .kdramaview-container > h1 {
+        color: #fff;
+        font-size: 14px;
+    }
+}
 
 .kdramaview-wrapper {
     width: 100%;
@@ -55,6 +72,41 @@
 .kdramaview-box:hover {
     transform: scale(1.05);
 }
+@media screen and (max-width:896px) {
+    .kdramaview-wrapper {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .kdramaview-link {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    
+    .kdramaview-box {
+        width: 100%;
+        height: fit-content;
+        flex-direction: column;
+        display: flex;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .kdramaview-box > img {
+        width: 100%;
+        height: fit-content;
+        object-fit: cover;
+        display: block;
+        border-radius: 10px;
+    }
+}
 
 .kdramaview-overlay {
     position: absolute;
@@ -85,11 +137,6 @@
     font-family: MontLight;
 }
 
-.kdramaview-wrapper > p {
-    font-size: 14px;
-    font-family: MontLight;
-}
-
 .kdramaview-container > a {
     margin-left: 70px;
     color: #fff;
@@ -102,6 +149,34 @@
 .kdramaview-container > a:hover {
     background-color: #fff;
     color: black;
+}
+@media screen and (max-width:896px) {
+    .kdramaview-overlay {
+        position: relative;
+        gap: 5px;
+        padding: 10px;
+        opacity: 1;
+        background-color: transparent;
+      }
+    
+      .kdramaview-overlay > h2 {
+        font-size: 9px;
+        font-family: Strike;
+      }
+      .kdramaview-overlay > p {
+        display: none;
+        font-size: 14px;
+        font-family: MontLight;
+    }
+    
+    .kdramaview-container > a {
+        margin-left: 70px;
+        color: #fff;
+        border: 1px solid #fff;
+        border-radius: 10px;
+        padding: 10px 15px;
+        font-family: Strike;
+    }
 }
 
 .skeleton-box {

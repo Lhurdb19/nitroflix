@@ -3,27 +3,73 @@ import { createContext, useCallback, useState, useEffect } from "react";
 export const AuthContext = createContext({
     isLoggedIn: false,
     Signin: () => {},
-    Signout: () => {}
+    Signout: () => {},
+    Register: () => {},
+    user: null,
 });
 
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState(null);
+    
 
-    //Login function  to set the user as logged in
-    const Signin = useCallback(() => {
-        setIsLoggedIn(true);
+
+    //Function to set the user log in
+    const Signin = useCallback(async (email, password) => {
+        return new Promise((resolve) => {
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            const user = users.find((user) => user.email === email && user.password === password);
+    
+            if (user) {
+                setIsLoggedIn(true);
+                setUser(user);
+                localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("user", JSON.stringify(user));
+                resolve(true);
+            } else {
+                alert("Invalid email or password.");
+                resolve(false);
+            }
+        });
     }, []);
+    
 
-    //Logout function to set the user as logged out
+      //function  to register a new user
+    const Register = useCallback(async (email, password, lastName = "") => {
+        return new Promise((resolve) => {
+            const firstName = email.split('@')[0]; 
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            
+            if (users.some((user) => user.email === email)) {
+                alert("User already exists. Please log in.");
+                resolve(false);
+                return;
+            }
+            
+            users.push({ firstName, lastName, email, password });
+            localStorage.setItem("users", JSON.stringify(users));
+            alert("Registration successful. You can now log in.");
+            resolve(true);
+        });
+    }, []);
+    
+
+    //function to set the user as logged out
     const Signout = useCallback(()=> {
         setIsLoggedIn(false);
+        setUser(null);
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("user");
     }, []);
 
     //Load Login status from localStorage on component mount
     useEffect(()=> {
         const storedLoginStatus = localStorage.getItem('isLoggedIn');
-        if(storedLoginStatus) {
-            setIsLoggedIn(storedLoginStatus === 'true');
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+
+        if(storedLoginStatus === "true" && storedUser) {
+            setIsLoggedIn(true);
+            setUser(storedUser)
         }
     }, []);
 
@@ -34,8 +80,10 @@ export const AuthProvider = ({ children }) => {
     }, [isLoggedIn])
 
 
-    const value = { isLoggedIn, Signin, Signout };
+    const value = { isLoggedIn, user, Register, Signin, Signout };
 
     //Provide the context to the children components
-    return<AuthContext.Provider value={value}> {children} </AuthContext.Provider>
-}
+    return (
+    <AuthContext.Provider value={value}> {children} </AuthContext.Provider>
+    );
+};
