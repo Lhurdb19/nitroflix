@@ -86,11 +86,11 @@ function Navigation() {
                 )}
             </div>
 
-            <div className={`nav-link ${isMobile ? 'mobile active' : ''}`}>
+            <div className={`nav-link ${isMobile ? 'mobile active' : ''}`} onClick={()=> setIsMobile(!isMobile)}>
 
 
-                <li><Link to='/blog' style={{ color: scrolling ? "#fff" : '#eb1010' }} onClick={() => setIsMobile(false)}> Blog </Link></li>
-                <li><Link to='/contact' style={{ color: scrolling ? "#fff" : '#eb1010' }} onClick={() => setIsMobile(false)}> Contact </Link></li>
+                <li><Link to='/blog' style={{ color: scrolling ? "#fff" : '#eb1010' }} onClick={() => setIsMobile(!isMobile)}> Blog </Link></li>
+                <li><Link to='/contact' style={{ color: scrolling ? "#fff" : '#eb1010' }} onClick={() => setIsMobile(!isMobile)}> Contact </Link></li>
 
             <div className="user" onClick={handleUser}>
                 {isLoggedIn && getUserInitials() ? (
@@ -119,7 +119,7 @@ function Navigation() {
                 </div>
             </div>
 
-            <div className="mobile-user-toggle-menu">
+            <div className="mobile-user-toggle-menu" onClick={() => setIsMobile(!isMobile)}>
 
             <div className="mobile-user" onClick={handleUser}>
                 {isLoggedIn && getUserInitials() ? (
@@ -147,7 +147,7 @@ function Navigation() {
                 )}
                 </div>
 
-            <div className="toggle-menu" onClick={() => setIsMobile(!isMobile)} style={{ color: scrolling ? "#fff" : '#eb1010' }}>
+            <div className="toggle-menu"onClick={() => setIsMobile(false)} style={{ color: scrolling ? "#fff" : '#eb1010' }}>
                 {isMobile ? <CgMenu  /> : <HiMiniXMark />}
             </div>
         </div>
