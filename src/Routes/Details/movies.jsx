@@ -48,7 +48,7 @@ const MovieDetail = () => {
           </span>
 
           {/* Include Rating Component */}
-          <Ratingcomponent movieId={id} />
+          {/* <Ratingcomponent movieId={id} /> */}
         </div>
       ) : (
         <p>Loading...</p>

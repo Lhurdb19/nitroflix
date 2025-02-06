@@ -54,8 +54,8 @@ const Footer = () => {
 
         {/* Bottom Section */}
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Nitroflix. All rights reserved.</p>
-          <Link  style= {{color: '#777'}}> HejiDev </Link> 
+          <p>&copy; {new Date().getFullYear()} Nitroflix. All rights reserved. <Link  style= {{color: '#777'}}> HejiDev </Link></p>
+           
           <p>Made with ❤️ for movie lovers.</p>
         </div>
       </div>
