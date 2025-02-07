@@ -73,7 +73,7 @@
         grid-template-columns: repeat(3, 1fr);
         justify-content: flex-start;
         align-items: flex-start;
-        gap: 15px;
+        gap:30px 15px;
     }
     
     .upcomingview-link {
