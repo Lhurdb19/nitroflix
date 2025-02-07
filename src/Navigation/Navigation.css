@@ -74,7 +74,7 @@
         flex-direction: column;
         left: 0%;
         top: 130px;
-        transform: translateX(0%);
+        transform: translateX(70%);
         background-color: #222;
         color: #ccc;
         position: absolute;
@@ -84,8 +84,8 @@
         transition: all 0.3s ease-in-out;
     }
 
-    .navigation-container > .nav-link.active.mobile {
-        transform: translateX(-100%);
+    .navigation-container > .nav-link.mobile.active {
+        transform: translateX(100%);
         transition: all 0.3s ease-in-out;
     }
     
