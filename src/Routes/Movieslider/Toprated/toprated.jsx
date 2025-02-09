@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import "./Toprated.css";
 
 const API_KEY = "4288ff89da779dcd1ba86834cf9c48d9";
@@ -50,7 +51,7 @@ const Toprated = () => {
         breakpoint: 480,
         settings: {
           arrows: false,
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -60,7 +61,11 @@ const Toprated = () => {
   return (
     <Fragment>
       <div className="top-component">
+        
+      <Link to={'/topratedview'}>
         <h1>Top Rated Movies</h1>
+        <MdOutlineKeyboardArrowRight className="arrow-icon" />
+      </Link>
         <div className="top-wrapper">
           <Slider {...settings} className="top-slider">
             {topMovies.map((movie) => (
@@ -81,7 +86,6 @@ const Toprated = () => {
             ))}
           </Slider>
         </div>
-      <Link to={'/topratedview'}>See More</Link>
         
       </div>
     </Fragment>

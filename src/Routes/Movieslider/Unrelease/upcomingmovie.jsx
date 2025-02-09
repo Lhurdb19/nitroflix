@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import './Upcomingmovie.css' // Ensure this file exists and is correctly named
 
 const API_KEY = "4288ff89da779dcd1ba86834cf9c48d9";
@@ -34,13 +35,16 @@ function Upcomingmovie() {
         responsive: [
             { breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 2, infinite: true, dots: true } },
             { breakpoint: 768, settings: { slidesToShow: 3, slidesToScroll: 2 } },
-            { breakpoint: 480, settings: { arrows: false, slidesToShow: 3, slidesToScroll: 1 } },
+            { breakpoint: 480, settings: { arrows: false, slidesToShow: 2, slidesToScroll: 1 } },
         ],
     };
 
     return (
         <div className="upcoming-container">
+            <Link to={'/upcomingview'}>
             <h1>Upcoming Movies</h1>
+            <MdOutlineKeyboardArrowRight className="arrow-icon" />
+            </Link>
             <div className="upcoming-wrapper">
                 {upcomingMovies.length > 0 ? (
                     <Slider {...settings} className="upcoming-slider">
@@ -65,7 +69,6 @@ function Upcomingmovie() {
                     <p>Loading Upcoming movies...</p>
                 )}
             </div>
-            <Link to={'/upcomingview'}>See More</Link>
         </div>
     );
 }

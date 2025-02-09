@@ -21,23 +21,48 @@
     color: #fff;
 }
 
-.kdrama-container > h1 {
-    padding-left: 70px;
+.kdrama-container > a {
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+  }
+  
+  .kdrama-container > a > h1 {
     font-family: Strike;
-}
+  }
+  .kdrama-container > a > .arrow-icon {
+    font-size: 30px;
+    transition: all 0.3s ease-in-out;
+  }
+  .kdrama-container > a:hover > .arrow-icon {
+    color: #ffb606;
+    padding-left: 10px;
+    transition: all 0.3s ease-in-out;
+  }
 
-@media screen and (max-width:896px) {
+  @media screen and (max-width:896px) {
     .kdrama-container {
-        width: 100%;
-        padding: 20px 10px;
-        color: #fff;
+      text-align: start;
+      padding: 10px 10px 0px  0px;
+      color: #fff;
+      gap: 5px;
     }
-    
-    .kdrama-container > h1 {
-        padding-left: 10px;
-        font-size: 14px;
+  
+    .kdrama-container > a {
+      padding: 0 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      font-size: 10px;
     }
-}
+    .kdrama-container > a > .arrow-icon {
+      font-size: 20px;
+      transition: all 0.3s ease-in-out;
+    }
+  }
 
 .kdrama-wrapper {
     max-width: 90%;
@@ -73,7 +98,7 @@
     .kdrama-wrapper {
         max-width: 100%;
         margin: 0% auto;
-        padding: 20px 0;
+        padding: 0px;
     }
     
     .kdrama-slider {
@@ -88,7 +113,7 @@
     
     .kdrama-box > img {
         width: 100%;
-        height: 130px;
+        height: 200px;
         display: block;
         border-radius: 10px;
     }
@@ -135,22 +160,10 @@
     font-family: MontLight;
 }
 
-.kdrama-container > a {
-    margin-left: 70px;
-    color: #fff;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    padding: 10px 15px;
-    font-family: Strike;
-}
 
-.kdrama-container > a:hover {
-    background-color: #fff;
-    color: #121212;
-}
 @media screen and (max-width:896px) {
     .kdrama-overlay > h2 {
-        font-size: 9px;
+        font-size: 15px;
       }
       .kdrama-overlay > p {
         display: none;

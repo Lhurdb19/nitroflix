@@ -21,21 +21,46 @@
     color: #fff;
   }
 
-  .top-component > h1 {
-    padding-left: 70px;
+  .top-component > a {
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+  }
+  
+  .top-component > a > h1 {
     font-family: Strike;
   }
+  .top-component > a > .arrow-icon {
+    font-size: 30px;
+    transition: all 0.3s ease-in-out;
+  }
+  .top-component > a:hover > .arrow-icon {
+    color: #ffb606;
+    padding-left: 10px;
+    transition: all 0.3s ease-in-out;
+  }
+
   @media screen and (max-width:896px) {
     .top-component {
       text-align: start;
-      padding: 20px 10px;
+      padding: 0px 10px 0px 10px;
       color: #fff;
-      gap: -5px;
+      gap: 5px;
     }
   
-    .top-component > h1 {
-      padding-left: 10px;
-      font-size: 14px;
+    .top-component > a {
+      padding: 0 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      font-size: 10px;
+    }
+    .top-component > a > .arrow-icon {
+      font-size: 20px;
+      transition: all 0.3s ease-in-out;
     }
   }
   
@@ -134,33 +159,12 @@
 }
 @media screen and (max-width:896px) {
   .top-overlay > h2 {
-    font-size: 8px;
+    font-size: 15px;
     font-family: Strike;
   }
   .top-overlay > p {
     display: none;
     font-size: 14px;
     font-family: MontLight;
-}
-}
-
-.top-component > a {
-    margin-left: 70px;
-    color: #fff;
-    border: 1px solid #fff;
-    border-radius: 10px;
-    padding: 10px 15px;
-    font-family: Strike;
-}
-
-.top-component > a:hover {
-    background-color: #fff;
-    color: black;
-}
-@media screen and (max-width:896px) {
-  .top-component > a {
-    margin-left: 10px;
-    padding: 7px 10px;
-    font-size: 10px;
 }
 }

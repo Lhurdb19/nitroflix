@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { FaRegUser } from "react-icons/fa";
 import { HiMiniXMark } from "react-icons/hi2";
 import { CgMenu } from "react-icons/cg";
+import { IoMdSearch } from "react-icons/io";
 import './Navigation.css';
 
 const API_KEY = '4288ff89da779dcd1ba86834cf9c48d9';
@@ -17,6 +18,7 @@ function Navigation() {
     const [userDrop, setUserDrop] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+    const [isSearchDropped, setIsSearchDropped] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => setScrolling(window.scrollY > 600);
@@ -45,6 +47,11 @@ function Navigation() {
         }
     };
 
+    const handleSearchDropped = () => {
+        setIsSearchDropped(!isSearchDropped)
+    };
+
+
     const handleMovieSelect = (movieId) => {
         navigate(`/Trend/${movieId}`);
         setSearchQuery(""); // Clear search box
@@ -64,7 +71,7 @@ function Navigation() {
     return (
         <>
         <div className={`navigation-container ${scrolling ? 'scrolled' : ""}`}>
-            <Link to={'/'} style={{ color: scrolling ? "#fff" : '#eb1010' }} onClick={() => setIsMobile(false)}>
+            <Link to={'/'} style={{ color: scrolling ? "#fff" : '#fff' }} onClick={() => setIsMobile(false)}>
                 NITROFLIX
             </Link>
 
@@ -89,14 +96,14 @@ function Navigation() {
             <div className={`nav-link ${isMobile ? 'mobile active' : ''}`} onClick={()=> setIsMobile(!isMobile)}>
 
 
-                <li><Link to='/blog' style={{ color: scrolling ? "#fff" : '#eb1010' }} onClick={() => setIsMobile(!isMobile)}> Blog </Link></li>
-                <li><Link to='/contact' style={{ color: scrolling ? "#fff" : '#eb1010' }} onClick={() => setIsMobile(!isMobile)}> Contact </Link></li>
+                <li><Link to='/blog' style={{ color: scrolling ? "#fff" : '#fff' }} onClick={() => setIsMobile(!isMobile)}> Blog </Link></li>
+                <li><Link to='/contact' style={{ color: scrolling ? "#fff" : '#fff' }} onClick={() => setIsMobile(!isMobile)}> Contact </Link></li>
 
             <div className="user" onClick={handleUser}>
                 {isLoggedIn && getUserInitials() ? (
-                    <p className="user-initials" style={{ color: scrolling ? '#eb1010' : '#eb1010' }}>{getUserInitials()}</p>
+                    <p className="user-initials" style={{ color: scrolling ? '#fff' : '#eb1010' }}>{getUserInitials()}</p>
                 ) : (
-                    <p style={{ color: scrolling ? "#fff" : '#eb1010' }}><FaRegUser /></p>
+                    <p style={{ color: scrolling ? "#fff" : '#fff' }}><FaRegUser /></p>
                 )}
 
                 {userDrop && (
@@ -119,46 +126,20 @@ function Navigation() {
                 </div>
             </div>
 
-            <div className="mobile-user-toggle-menu" onClick={() => setIsMobile(!isMobile)}>
+            <div className="mobile-user-toggle-menu" >
 
-            <div className="mobile-user" onClick={handleUser}>
-                {isLoggedIn && getUserInitials() ? (
-                    <p className="mobile-user-initials" style={{ color: scrolling ? '#eb1010' : '#eb1010' }}>{getUserInitials()}</p>
-                ) : (
-                    <p style={{ color: scrolling ? "#fff" : '#eb1010' }}><FaRegUser /></p>
-                )}
-
-                {userDrop && (
-                    <div className="user-card">
-                        {isLoggedIn ? (
-                            <>
-                                <Link to="/watchlist">Watchlist</Link>
-                                <Link to="/favorite">Favorite</Link>
-                                <Link to="/account">Account Management</Link>
-                                <Link onClick={Signout}>Logout</Link>
-                            </>
-                        ) : (
-                            <>
-                                <p onClick={() => navigate("/login")} style={{ cursor: 'pointer' }}>Login</p>
-                                <p onClick={() => navigate("/signup")} style={{ cursor: 'pointer' }}>Sign Up</p>
-                            </>
-                        )}
-                    </div>
-                )}
-                </div>
-
-            <div className="toggle-menu"onClick={() => setIsMobile(false)} style={{ color: scrolling ? "#fff" : '#eb1010' }}>
-                {isMobile ? <CgMenu  /> : <HiMiniXMark />}
-            </div>
-        </div>
-
-        </div>
-            <div className="mobile-search-bar">
+                
+                
+            <div className="mobile-search-bar" onClick={handleSearchDropped}>
+                <IoMdSearch className='search-icon' style={{color: '#fff', fontSize: "18px"}}/>
+            {isSearchDropped && (
+            <div className="search-drop">
                 <input 
-                    type="text" 
-                    placeholder="Search movies..." 
-                    value={searchQuery} 
-                    onChange={handleSearch} 
+                type="text" 
+                placeholder="Search movies..." 
+                value={searchQuery} 
+                onChange={handleSearch} 
+                autoFocus
                 />
                 {searchResults.length > 0 && (
                     <ul className="search-results">
@@ -169,7 +150,44 @@ function Navigation() {
                         ))}
                     </ul>
                 )}
+                        </div>
+                    )}
             </div>
+
+            <div className="mobile-user" onClick={handleUser}>
+                {isLoggedIn && getUserInitials() ? (
+                    <p className="mobile-user-initials" style={{ color: scrolling ? '#eb1010' : '#eb1010' }}>{getUserInitials()}</p>
+                ) : (
+                    <p style={{ color: scrolling ? "#fff" : '#fff' }}><FaRegUser /></p>
+                )}
+
+                {userDrop && (
+                    <div className="user-card">
+                        {isLoggedIn ? (
+                            <>
+                                <Link to="/watchlist">Watchlist</Link>
+                                <Link to="/favorite">Favorite</Link>
+                                <Link to="/account">Account Management</Link>
+                                <Link onClick={Signout}>Logout</Link>
+                            </>
+                        ) : (
+                            <>
+                                <p onClick={() => navigate("/login")} style={{ cursor: 'pointer' }}>Login</p>
+                                <p onClick={() => navigate("/signup")} style={{ cursor: 'pointer' }}>Sign Up</p>
+                            </>
+                        )}
+                    </div>
+                )}
+                </div>
+
+            <div className="toggle-menu"onClick={() => setIsMobile(!isMobile)} style={{ color: scrolling ? "#fff" : '#fff' }}>
+                {isMobile ? <HiMiniXMark /> : <CgMenu  />}
+            </div>
+        </div>
+
+        </div>
+
+
             </>
     );
 }

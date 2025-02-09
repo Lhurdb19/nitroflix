@@ -73,8 +73,8 @@
         align-items: flex-start;
         flex-direction: column;
         left: 0%;
-        top: 130px;
-        transform: translateX(70%);
+        top: 72px;
+        transform: translateX(-100%);
         background-color: #222;
         color: #ccc;
         position: absolute;
@@ -85,7 +85,7 @@
     }
 
     .navigation-container > .nav-link.mobile.active {
-        transform: translateX(100%);
+        transform: translateX(0%);
         transition: all 0.3s ease-in-out;
     }
     
@@ -228,7 +228,7 @@
     padding: 10px;
     gap: 7px;
     right: 10px;
-    top: 130px;
+    top: 72px;
     background-color: #ccc;
     transition: all 0.3s ease-in-out;
 }
@@ -240,7 +240,7 @@
 }
 
 .mobile-search-bar {
-    width: 100%;
+    /* width: 100%; */
     display: none;
     justify-content: flex-start;
     align-items: flex-start;
@@ -248,37 +248,35 @@
 
 @media screen and (max-width:896px) {
     .mobile-search-bar {
-        width: 100%;
-        height: 60px;
         display: flex;
         justify-content: flex-start;
-        align-items: center;
-        top: 70px;
-        position: fixed;
-        z-index: 100;
-        border-bottom: 1px solid #eb1010;
-        background-color: #222;
-        padding: 10px;
+        align-items: flex-start;
+        position: relative;
     }
 
-    .mobile-search-bar > input {
-        width: 100%;
-        height: 40px;
+    .search-drop > input {
+        width: 300px;
+        height: 30px;
         border-radius: 10px;
         border: none;
         outline: none;
         padding: 10px;
+        position: absolute;
+        top: 50px;
+        right: -75px;
+        border: 1px solid #121212;
     }
-
+    
     .search-results {
         position: absolute;
-        top: 100%;
+        margin-left: -200px;
+        top: 80px;
         left: 0;
-        width: 70%;
+        width: 200px;
         background: #222;
         border-radius: 4px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        overflow: hidden;
+        /* overflow: hidden; */
         z-index: 10;
         list-style: none;
         padding: 0;
@@ -289,3 +287,4 @@
         font-family: MontLight;
     }
 }
+
