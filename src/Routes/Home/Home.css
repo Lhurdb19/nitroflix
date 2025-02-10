@@ -10,3 +10,12 @@
     background-color: #121212;
     padding: 20px;
 }
+
+@media screen and (max-width:896px) {
+    .home-container {
+        width: 100%;
+        min-height: 100vh;
+        background-color: #121212;
+        padding: 20px 10px;
+    }
+}
