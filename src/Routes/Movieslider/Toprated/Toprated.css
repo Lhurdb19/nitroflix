@@ -33,7 +33,7 @@
     font-family: Strike;
   }
   .top-component > .heading > p {
-    font-size: 30px;
+    font-size: 13px;
     transition: all 0.3s ease-in-out;
   }
   .top-component > .heading:hover > p {
@@ -96,7 +96,7 @@
   
   .top-box img {
     width: 100%;
-    height: auto;
+    height: 300px;
     border-radius: 10px;
     display: block;
   }

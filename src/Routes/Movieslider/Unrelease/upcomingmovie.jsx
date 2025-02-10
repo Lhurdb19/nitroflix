@@ -71,8 +71,8 @@ function Upcomingmovie() {
                                             alt={movie.name ? `${movie.name} Poster` : "No title available"}
                                         />
                                         <div className="upcoming-overlay">
-                                            <h2>{movie.name || "Unknown Title"}</h2>
-                                            <p>Release: {movie.first_air_date || "N/A"}</p>
+                                            <h2>{movie.title || movie.name }</h2>
+                                            <p>Release: {movie.first_air_date || movie.release_date}</p>
                                         </div>
                                     </div>
                                 </Link>
