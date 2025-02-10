@@ -3,27 +3,24 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import "./Kdrama.css"; // Ensure this file exists and is correctly named
+import "./Kdrama.css";
 
 const API_KEY = "4288ff89da779dcd1ba86834cf9c48d9";
 
 function Kdramamovie() {
     const [kdramaMovies, setKdramaMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         axios
         .get(`https://api.themoviedb.org/3/tv/airing_today?api_key=${API_KEY}`)
         .then((response) => {
-            console.log("API Response:", response.data); // Log response data
             if (response.data.results) {
                 setKdramaMovies(response.data.results);
-            } else {
-                console.error("No results found in API response");
+                setLoading(false);
             }
         })
-        .catch((error) => {
-            console.error("Error fetching K-Drama Movies:", error);
-        });
+        .catch(() => setLoading(false));
     }, []);
 
     const settings = {
@@ -41,13 +38,22 @@ function Kdramamovie() {
 
     return (
         <div className="kdrama-container">
-            
-            <Link to={'/kdramaview'}>
-            <h1>K-Drama Movies</h1>
-            <MdOutlineKeyboardArrowRight className="arrow-icon" />
+            <Link to={'/kdramaview'} className="heading">
+                <h1>K-Drama Movies</h1>
+                <p>View all</p>
+            </Link>
+            <Link to={'/kdramaview'} className="mobile-heading">
+                <h1>K-Drama Movies</h1>
+                <MdOutlineKeyboardArrowRight className="arrow-icon" />
             </Link>
             <div className="kdrama-wrapper">
-                {kdramaMovies.length > 0 ? (
+                {loading ? (
+                    <div className="skeleton-slider">
+                        {[...Array(5)].map((_, index) => (
+                            <div key={index} className="skeleton-box"></div>
+                        ))}
+                    </div>
+                ) : (
                     <Slider {...settings} className="kdrama-slider">
                         {kdramaMovies.map((movie) => (
                             movie.poster_path && (
@@ -55,7 +61,7 @@ function Kdramamovie() {
                                     <div className="kdrama-box">
                                         <img
                                             src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-                                            alt={movie.name ? `${movie.name} Poster` : "No title available"}
+                                            alt={movie.name || "Unknown Title"}
                                         />
                                         <div className="kdrama-overlay">
                                             <h2>{movie.name || "Unknown Title"}</h2>
@@ -66,8 +72,6 @@ function Kdramamovie() {
                             )
                         ))}
                     </Slider>
-                ) : (
-                    <p>Loading K-Drama movies...</p>
                 )}
             </div>
         </div>

@@ -10,15 +10,18 @@ const API_KEY = "4288ff89da779dcd1ba86834cf9c48d9";
 
 function Popularmovie() {
   const [popularMovies, setPopularMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
       .then((response) => {
         setPopularMovies(response.data.results);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching popular movies:", error);
+        setLoading(false);
       });
   }, []);
 
@@ -37,26 +40,30 @@ function Popularmovie() {
   return (
     <div className="popular-container">
       <div className="popular-wrapper">
-        <Slider {...settings} className="fade-slider">
-          {popularMovies.map((movie) => (
-            <Link
-              to={`/Trend/${movie.id}`}
-              style={{ textDecoration: "none", color: "inherit" }}
-              key={movie.id}
-            >
-              <div className="popular-box">
-                <div className="popular-overlay">
-                  <h2>Title: {movie.title}</h2>
-                  <p>Release: {movie.release_date}</p>
+        {loading ? (
+          <div className="skeleton-box"></div>
+        ) : (
+          <Slider {...settings} className="fade-slider">
+            {popularMovies.map((movie) => (
+              <Link
+                to={`/Trend/${movie.id}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+                key={movie.id}
+              >
+                <div className="popular-box">
+                  <div className="popular-overlay">
+                    <h2>Title: {movie.title}</h2>
+                    <p>Release: {movie.release_date}</p>
+                  </div>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                  />
                 </div>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                />
-              </div>
-            </Link>
-          ))}
-        </Slider>
+              </Link>
+            ))}
+          </Slider>
+        )}
       </div>
       <Link to={'popularview'}>See More</Link>
     </div>

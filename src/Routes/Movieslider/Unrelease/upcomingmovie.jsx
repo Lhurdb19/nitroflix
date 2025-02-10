@@ -9,6 +9,7 @@ const API_KEY = "4288ff89da779dcd1ba86834cf9c48d9";
 
 function Upcomingmovie() {
     const [upcomingMovies, setUpcomingMovies] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         axios
@@ -17,12 +18,14 @@ function Upcomingmovie() {
             console.log("API Response:", response.data); // Log response data
             if (response.data.results) {
                 setUpcomingMovies(response.data.results);
+                setLoading(false);
             } else {
                 console.error("No results found in API response");
             }
         })
         .catch((error) => {
             console.error("Error fetching K-Drama Movies:", error);
+            setLoading(false);
         });
     }, []);
 
@@ -41,12 +44,23 @@ function Upcomingmovie() {
 
     return (
         <div className="upcoming-container">
-            <Link to={'/upcomingview'}>
+            <Link to={'/upcomingview'} className="heading">
+            <h1>Upcoming Movies</h1>
+            <p>View all</p>
+            </Link>
+            
+            <Link to={'/upcomingview'} className="mobile-heading">
             <h1>Upcoming Movies</h1>
             <MdOutlineKeyboardArrowRight className="arrow-icon" />
             </Link>
+
             <div className="upcoming-wrapper">
-                {upcomingMovies.length > 0 ? (
+                {loading ?
+                Array.from({ length: 5 }).map((_, index) => (
+                    <div className="skeleton-box" key={index}></div>
+                )) 
+                :
+                upcomingMovies.length > 0 ? (
                     <Slider {...settings} className="upcoming-slider">
                         {upcomingMovies.map((movie) => (
                             movie.poster_path && (

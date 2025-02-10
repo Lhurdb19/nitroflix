@@ -19,6 +19,7 @@ function Navigation() {
     const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [isSearchDropped, setIsSearchDropped] = useState(false);
+    const [closeSearchButton, setCloseSearchButton] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => setScrolling(window.scrollY > 600);
@@ -27,6 +28,12 @@ function Navigation() {
     }, []);
 
     const handleUser = () => setUserDrop(!userDrop);
+
+    const handleCloseSearch = () => {
+        setCloseSearchButton(!closeSearchButton);
+        setSearchResults([]); // Clear results properly
+        setSearchQuery(""); // Clear input
+    };
 
     const handleSearch = async (e) => {
         const query = e.target.value;
@@ -37,7 +44,17 @@ function Navigation() {
                 const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`);
                 if (!response.ok) throw new Error("Failed to fetch");
                 const data = await response.json();
-                setSearchResults(data.results ? data.results.slice(0, 5) : []);
+
+                // Fetch detailed movie data to get production countries
+                const detailedResults = await Promise.all(
+                    data.results.slice(0, 5).map(async (movie) => {
+                        const detailsResponse = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=${API_KEY}`);
+                        const detailsData = await detailsResponse.json();
+                        return { ...movie, production_countries: detailsData.production_countries || [] };
+                    })
+                );
+
+                setSearchResults(detailedResults);
             } catch (error) {
                 console.error("Error fetching movie data:", error);
                 setSearchResults([]);
@@ -83,29 +100,38 @@ function Navigation() {
                     onChange={handleSearch} 
                 />
                 {searchResults.length > 0 && (
-                    <ul className="search-results">
+                    <ul className="search-results-overlay">     
+                            <div className="search-result">
+                                <div className="close-search">
+                                <span className="movie-origin">
+                                        {searchResults[0]?.production_countries?.[0]?.iso_3166_1 || "N/A"}
+                                    </span>
+                                    <button onClick={ handleCloseSearch } className='close-btn'>
+                                    <HiMiniXMark className="close-icon" />
+                                    </button>
+                                </div>
                         {searchResults.map(movie => (
                             <li key={movie.id} onClick={() => handleMovieSelect(movie.id)}>
                                 {movie.title ? `${movie.title} (${movie.release_date?.split("-")[0] || "N/A"})` : `${movie.name} (${movie.first_air_date?.split("-")[0] || "N/A"})`}
+                                <span className="movie-component"> - {movie.production_countries?.[0]?.iso_3166_1 || "N/A"}</span>
                             </li>
                         ))}
+                        </div>
                     </ul>
                 )}
             </div>
 
             <div className={`nav-link ${isMobile ? 'mobile active' : ''}`} onClick={()=> setIsMobile(!isMobile)}>
-
-
                 <li><Link to='/blog' style={{ color: scrolling ? "#fff" : '#fff' }} onClick={() => setIsMobile(!isMobile)}> Blog </Link></li>
                 <li><Link to='/contact' style={{ color: scrolling ? "#fff" : '#fff' }} onClick={() => setIsMobile(!isMobile)}> Contact </Link></li>
+            </div>
 
             <div className="user" onClick={handleUser}>
                 {isLoggedIn && getUserInitials() ? (
-                    <p className="user-initials" style={{ color: scrolling ? '#fff' : '#eb1010' }}>{getUserInitials()}</p>
+                    <p className="user-initials" style={{ color: scrolling ? '#eb1010' : '#eb1010' }}>{getUserInitials()}</p>
                 ) : (
-                    <p style={{ color: scrolling ? "#fff" : '#fff' }}><FaRegUser /></p>
+                    <p style={{ color: scrolling ? "#eb1010" : '#eb1010' }}><FaRegUser /></p>
                 )}
-
                 {userDrop && (
                     <div className="user-card">
                         {isLoggedIn ? (
@@ -123,36 +149,43 @@ function Navigation() {
                         )}
                     </div>
                 )}
-                </div>
             </div>
 
             <div className="mobile-user-toggle-menu" >
-
-                
-                
-            <div className="mobile-search-bar" onClick={handleSearchDropped}>
-                <IoMdSearch className='search-icon' style={{color: '#fff', fontSize: "18px"}}/>
-            {isSearchDropped && (
-            <div className="search-drop">
-                <input 
-                type="text" 
-                placeholder="Search movies..." 
-                value={searchQuery} 
-                onChange={handleSearch} 
-                autoFocus
-                />
-                {searchResults.length > 0 && (
-                    <ul className="search-results">
+                <div className="mobile-search-bar" onClick={handleSearchDropped}>
+                    <IoMdSearch className='search-icon' style={{color: '#fff', fontSize: "18px"}}/>
+                 {isSearchDropped && (
+                  <div className="search-drop">
+                    <input 
+                    type="text" 
+                    placeholder="Search movies..." 
+                    value={searchQuery} 
+                    onChange={handleSearch} 
+                    autoFocus
+                    />
+                    {searchResults.length > 0 && (
+                    <ul className="mobile-search-results-overlay">
+                        <div className="mobile-search-result">
+                                <div className="mobile-close-search">
+                                {/* <span className="movie-origin">
+                                        {searchResults[0]?.production_countries?.[0]?.iso_3166_1 || "N/A"}
+                                    </span> */}
+                                    <button onClick={ handleCloseSearch } className='close-btn'>
+                                    <HiMiniXMark className="close-icon" />
+                                    </button>
+                                </div>
                         {searchResults.map(movie => (
                             <li key={movie.id} onClick={() => handleMovieSelect(movie.id)}>
                                 {movie.title ? `${movie.title} (${movie.release_date?.split("-")[0] || "N/A"})` : `${movie.name} (${movie.first_air_date?.split("-")[0] || "N/A"})`}
+                                <span className="movie-component"> - {movie.production_countries?.[0]?.iso_3166_1 || "N/A"}</span>
                             </li>
                         ))}
-                    </ul>
-                )}
                         </div>
+                    </ul>
                     )}
-            </div>
+                  </div>
+                 )}
+                </div>
 
             <div className="mobile-user" onClick={handleUser}>
                 {isLoggedIn && getUserInitials() ? (
@@ -178,7 +211,7 @@ function Navigation() {
                         )}
                     </div>
                 )}
-                </div>
+            </div>
 
             <div className="toggle-menu"onClick={() => setIsMobile(!isMobile)} style={{ color: scrolling ? "#fff" : '#fff' }}>
                 {isMobile ? <HiMiniXMark /> : <CgMenu  />}

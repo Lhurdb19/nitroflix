@@ -15,32 +15,36 @@
 }
 
 .kdrama-container {
-    width: 100%;
-    padding: 10px;
+    /* width: 100%; */
+    padding: 10px 20px;
     background-color: #121212;
     color: #fff;
 }
 
-.kdrama-container > a {
-    padding: 0 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-  }
-  
-  .kdrama-container > a > h1 {
-    font-family: Strike;
-  }
-  .kdrama-container > a > .arrow-icon {
-    font-size: 30px;
-    transition: all 0.3s ease-in-out;
-  }
-  .kdrama-container > a:hover > .arrow-icon {
-    color: #ffb606;
-    padding-left: 10px;
-    transition: all 0.3s ease-in-out;
-  }
+.kdrama-container > .heading {
+  padding: 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.kdrama-container > .heading > h1 {
+  font-family: Strike;
+}
+.kdrama-container > .heading > p {
+  font-size: 30px;
+  transition: all 0.3s ease-in-out;
+}
+.kdrama-container > .heading:hover > p {
+  color: #ffb606;
+  padding-left: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.kdrama-container > .mobile-heading {
+  display: none;
+}
 
   @media screen and (max-width:896px) {
     .kdrama-container {
@@ -49,8 +53,12 @@
       color: #fff;
       gap: 5px;
     }
+
+    .kdrama-container > .heading {
+      display: none;
+    }
   
-    .kdrama-container > a {
+    .kdrama-container > .mobile-heading {
       padding: 0 5px;
       display: flex;
       justify-content: space-between;
@@ -71,8 +79,10 @@
 }
 
 .kdrama-slider {
-    width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
 
 .kdrama-box {
@@ -84,7 +94,7 @@
     position: relative;
 }
 
-.kdrama-box > img {
+.kdrama-box img {
     width: 100%;
     height: auto;
     display: block;
@@ -103,15 +113,16 @@
     
     .kdrama-slider {
         width: 100%;
-        display: flex;
+        display: none;
     }
     
     .kdrama-box {
         width: 100%;
         height: auto;
+        position: relative;
     }
     
-    .kdrama-box > img {
+    .kdrama-box img {
         width: 100%;
         height: 200px;
         display: block;
@@ -143,6 +154,7 @@
         opacity: 1;
         background-color: transparent;
         position: relative;
+        gap: 0px;
      }
   }
 
@@ -183,4 +195,18 @@
         font-family: Strike;
         font-size: 10px;
     }
+}
+
+.skeleton-box {
+  width: 200px;
+  height: 300px;
+  background: linear-gradient(90deg, #222 25%, #333 50%, #222 75%);
+  background-size: 400% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 10px;
+}
+
+@keyframes loading {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
 }

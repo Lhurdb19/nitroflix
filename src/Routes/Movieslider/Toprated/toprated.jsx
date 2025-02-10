@@ -11,15 +11,18 @@ const API_KEY = "4288ff89da779dcd1ba86834cf9c48d9";
 
 const Toprated = () => {
   const [topMovies, setTopMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get(`https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}`)
       .then((response) => {
         setTopMovies(response.data.results);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching Top Rated movies:", error);
+        setLoading(false);
       });
   }, []);
 
@@ -62,27 +65,36 @@ const Toprated = () => {
     <Fragment>
       <div className="top-component">
         
-      <Link to={'/topratedview'}>
+      <Link to={'/topratedview'} className="heading">
+        <h1>Top Rated Movies</h1>
+        <p>View all</p>
+      </Link>
+      <Link to={'/topratedview'} className="mobile-heading">
         <h1>Top Rated Movies</h1>
         <MdOutlineKeyboardArrowRight className="arrow-icon" />
       </Link>
         <div className="top-wrapper">
           <Slider {...settings} className="top-slider">
-            {topMovies.map((movie) => (
+            {loading
+            ? Array.from({ length: 5 }).map((_, index) => (
+              <div className="skeleton-box" key={index}></div>
+            ))
+          :
+            topMovies.map((movie) => (
               <Link
-                to={`/Trend/${movie.id}`}
-                className="top-link"
+              to={`/Trend/${movie.id}`}
+              className="top-link"
                 key={movie.id} >
                 <div className="top-box">
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={`${movie.name} Poster`} />
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={`${movie.name} Poster`} />
                   <div className="top-overlay">
-                    <h2>{movie.name}</h2>
-                    <p>Release: {movie.first_air_date}</p>
+                  <h2>{movie.name}</h2>
+                  <p>Release: {movie.first_air_date}</p>
                   </div>
-                </div>
-              </Link>
+                  </div>
+                  </Link>
             ))}
           </Slider>
         </div>

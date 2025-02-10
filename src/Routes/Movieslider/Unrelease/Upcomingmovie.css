@@ -21,7 +21,7 @@
     color: #fff;
   }
 
-  .upcoming-container > a {
+  .upcoming-container > .heading {
     padding: 0 50px;
     display: flex;
     justify-content: space-between;
@@ -29,17 +29,21 @@
     color: white;
   }
   
-  .upcoming-container > a > h1 {
+  .upcoming-container > .heading > h1 {
     font-family: Strike;
   }
-  .upcoming-container > a > .arrow-icon {
+  .upcoming-container > .heading > p {
     font-size: 30px;
     transition: all 0.3s ease-in-out;
   }
-  .upcoming-container > a:hover > .arrow-icon {
+  .upcoming-container > .heading:hover > p {
     color: #ffb606;
     padding-left: 10px;
     transition: all 0.3s ease-in-out;
+  }
+
+  .upcoming-container > .mobile-heading {
+    display: none;
   }
 
   @media screen and (max-width:896px) {
@@ -50,7 +54,11 @@
       gap: 10px;
     }
   
-    .upcoming-container > a {
+    .upcoming-container > .heading {
+      display: none;
+    }
+    
+    .upcoming-container > .mobile-heading {
       padding: 0 7px;
       display: flex;
       justify-content: space-between;

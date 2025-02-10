@@ -11,16 +11,14 @@ import Toprated from '../Movieslider/Toprated/toprated';
 function Home() {
   return (
     <div className='home-container'>
-      <div className="popular">
       <Popularmovie/>
-      </div>
 
-      <div className="trending">
       <Trending/>
-      </div>
+      
       <Toprated/>
+
       <Kdramamovie/>
-      <br />
+      
       <Upcomingmovie/>
     </div>
   )
