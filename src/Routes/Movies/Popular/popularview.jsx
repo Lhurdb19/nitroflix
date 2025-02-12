@@ -1,45 +1,56 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import LoadSpinner from '../../../Spinner/LoadSpinner';
 import './Popularview.css';
-
-const API_KEY = "4288ff89da779dcd1ba86834cf9c48d9"
+import usePopularMovies from '../../../lib/fetchPopularMovies';
 
 function Popularview() {
-    const [popularViews, setPopularViews] = useState([]);
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = usePopularMovies();
+  const loaderRef = useRef(null); // Reference for IntersectionObserver
 
-    useEffect(() => {
-        axios 
-        .get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
-        .then((response) => {
-            setPopularViews(response.data.results);
-        })
-        .catch((error) => {
-            console.error("Error fetching popular movies!", error);
-        })
-    }, []);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
+          fetchNextPage(); // Load more movies automatically
+        }
+      },
+      { threshold: 1.0 }
+    );
 
+    if (loaderRef.current) observer.observe(loaderRef.current);
+
+    return () => observer.disconnect();
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  if (status === "loading") return <p>Loading popular movies...</p>;
+  if (status === "error") return <p>Error loading popular movies!</p>;
 
   return (
-    <>
     <div className='popularview-container'>
       <h1>Popular Movies</h1>
       <div className="popularview-wrapper">
-        {popularViews.map((movie) => (
+        {data?.pages.map((page) => 
+          page.results.map((movie) => (
             <Link to={`/Trend/${movie.id}`} key={movie.id} className='popularview-link'>
-                <div className="popularview-box">
-                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.title} Poster`} />
-                    <div className="popularview-overlay">
-                        <h2>{movie.title}</h2>
-                        <p>Release: {movie.release_date}</p>
-                    </div>
+              <div className="popularview-box">
+                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                <div className="popularview-overlay">
+                  <h2>{movie.title}</h2>
+                  <p>Release: {movie.release_date}</p>
                 </div>
+              </div>
             </Link>
-        ))}
+          ))
+        )}
+      </div>
+
+      {/* Auto-loading spinner when fetching next page */}
+      <div ref={loaderRef} className="loader-container">
+        {isFetchingNextPage && <LoadSpinner />}
       </div>
     </div>
-    </>
-  )
+  );
 }
 
 export default Popularview;

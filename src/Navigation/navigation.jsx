@@ -167,9 +167,7 @@ function Navigation() {
                     <ul className="mobile-search-results-overlay">
                         <div className="mobile-search-result">
                                 <div className="mobile-close-search">
-                                {/* <span className="movie-origin">
-                                        {searchResults[0]?.production_countries?.[0]?.iso_3166_1 || "N/A"}
-                                    </span> */}
+                                
                                     <button onClick={ handleCloseSearch } className='close-btn'>
                                     <HiMiniXMark className="close-icon" />
                                     </button>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+// import FavoriteButton from "../Favorites/favoritebutton";
 import "./Movies.css";
 
 const API_KEY = "4288ff89da779dcd1ba86834cf9c48d9";
+
 
 function formatDuration(minutes) {
   const hours = Math.floor(minutes / 60);
@@ -50,6 +52,8 @@ const MovieDetail = () => {
             alt={`${movie.title} Poster`}
           />
           <span>
+          {/* <FavoriteButton movieId={movie.id} accountId="API_KEY" accessToken="YOUR_ACCESS_TOKEN" /> */}
+
             <h1>{movie.title}</h1>
             <h3>Duration: {formatDuration(movie.runtime)}</h3>
             <p>Release Date: {movie.release_date}</p>
