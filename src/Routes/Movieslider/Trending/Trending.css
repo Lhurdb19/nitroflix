@@ -30,7 +30,7 @@
   }
   
   .trending-component > .heading > h1 {
-    font-family: Strike;
+    font-family: MontLight;
   }
   .trending-component > .heading > p {
     font-size: 13px;
@@ -49,7 +49,7 @@
   @media screen and (max-width:896px) {
     .trending-component {
       text-align: start;
-      padding: 30px 10px 0px 0px;
+      padding: 30px 0px 0px 0px;
       color: #fff;
       gap: 0px;
     }
@@ -59,7 +59,7 @@
     }
   
     .trending-component > .mobile-heading {
-      padding: 0 7px;
+      padding: 0 6px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -86,7 +86,7 @@
   }
   
   .trending-box {
-    width: 200px;
+    width: 250px;
     height: auto;
     overflow: hidden;
     position: relative;
@@ -120,9 +120,9 @@
     }
     
     .trending-box {
-      position: relative;
       width: 100%;
       height: auto;
+      position: relative;
     }
     
     .trending-box img {
@@ -161,18 +161,19 @@
   }
 
   .trending-overlay > h2 {
-    font-size: 16px;
+    font-size: 13px;
     font-family: Strike;
+    font-weight: 400;
   }
   .trending-overlay > p {
-    font-size: 14px;
+    font-size: 13px;
     font-family: MontLight;
+    font-weight: 400;
 }
 
 @media screen and (max-width:896px) {
   .trending-overlay > h2 {
-    font-size: 15px;
-    font-family: Strike;
+    font-size: 10px;
   }
   .trending-overlay > p {
     display: none;

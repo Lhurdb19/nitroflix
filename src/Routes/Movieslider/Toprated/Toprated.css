@@ -16,7 +16,7 @@
 
 .top-component {
     text-align: start;
-    padding: 20px 20px;
+    padding: 10px 20px;
     background-color: #121212;
     color: #fff;
   }
@@ -30,7 +30,7 @@
   }
   
   .top-component > .heading > h1 {
-    font-family: Strike;
+    font-family: MontLight;
   }
   .top-component > .heading > p {
     font-size: 13px;
@@ -49,9 +49,9 @@
   @media screen and (max-width:896px) {
     .top-component {
       text-align: start;
-      padding: 0px 10px 0px 10px;
+      padding: 0px 0px 0px 10px;
       color: #fff;
-      gap: 5px;
+      gap: 0px;
     }
 
     .top-component > .heading {
@@ -86,9 +86,9 @@
   }
   
   .top-box {
-    position: relative;
-    width: 200px;
+    width: 250px;
     height: auto;
+    position: relative;
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease-in-out;
@@ -108,7 +108,7 @@
     .top-wrapper {
       max-width: 100%;
       margin: 0 auto;
-      padding: 0px 0px;
+      padding: 0px;
     }
     
     .slick-slide {
@@ -158,21 +158,21 @@
   }
 
   .top-overlay > h2 {
-    font-size: 16px;
+    font-size: 13px;
     font-family: Strike;
   }
   .top-overlay > p {
-    font-size: 14px;
+    font-size: 13px;
     font-family: MontLight;
 }
 @media screen and (max-width:896px) {
   .top-overlay > h2 {
-    font-size: 15px;
+    font-size: 10px;
     font-family: Strike;
   }
   .top-overlay > p {
     display: none;
-    font-size: 14px;
+    font-size: 10px;
     font-family: MontLight;
 }
 }
